@@ -1,14 +1,15 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'mpesa');
-try {
-  $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-  if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
-    echo "Connection failed";
-  }
-} catch (Exception $e) {
-  echo "Error: " . $e->getMessage();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+$DB_SERVER = "localhost";
+$DB_USERNAME = "root";
+$DB_PASSWORD = "";
+$DB_NAME = "Mpesa"; // ⚠️ match EXACT name in phpMyAdmin
+
+$db = mysqli_connect($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
+
+if (!$db) {
+    die("Database connection failed: " . mysqli_connect_error());
 }
+ 
