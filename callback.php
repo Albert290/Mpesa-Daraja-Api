@@ -19,16 +19,17 @@ if ($data && isset($data['Body']['stkCallback'])) {
     $ResultCode = $callback['ResultCode'];
     
     if ($ResultCode == 0 && isset($callback['CallbackMetadata']['Item'])) {
-        $Amount = $TransactionId = $UserPhoneNumber = '';
+        $Amount = $MpesaReceiptNumber = $UserPhoneNumber = $TransactionDate = '';
         
         foreach ($callback['CallbackMetadata']['Item'] as $item) {
             if ($item['Name'] == 'Amount') $Amount = $item['Value'];
-            if ($item['Name'] == 'MpesaReceiptNumber') $TransactionId = $item['Value'];
+            if ($item['Name'] == 'MpesaReceiptNumber') $MpesaReceiptNumber = $item['Value'];
             if ($item['Name'] == 'PhoneNumber') $UserPhoneNumber = $item['Value'];
+            if ($item['Name'] == 'TransactionDate') $TransactionDate = $item['Value'];
         }
         
-        $stmt = mysqli_prepare($db, "INSERT INTO transactions (MerchantRequestID,CheckoutRequestID,ResultCode,Amount,MpesaReceiptNumber,PhoneNumber) VALUES (?,?,?,?,?,?)");
-        mysqli_stmt_bind_param($stmt, "ssssss", $MerchantRequestID, $CheckoutRequestID, $ResultCode, $Amount, $TransactionId, $UserPhoneNumber);
+        $stmt = mysqli_prepare($db, "INSERT INTO transactions (MerchantRequestID,CheckoutRequestID,ResultCode,Amount,MpesaReceiptNumber,PhoneNumber,TransactionDate) VALUES (?,?,?,?,?,?,?)");
+        mysqli_stmt_bind_param($stmt, "ssissss", $MerchantRequestID, $CheckoutRequestID, $ResultCode, $Amount, $MpesaReceiptNumber, $UserPhoneNumber, $TransactionDate);
         mysqli_stmt_execute($stmt);
     }
 }

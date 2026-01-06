@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 $DB_SERVER = "localhost";
 $DB_USERNAME = "root";
 $DB_PASSWORD = "";
-$DB_NAME = "Mpesa"; // ⚠️ match EXACT name in phpMyAdmin
+$DB_NAME = "mpesa_transactions"; 
 
 $db = mysqli_connect($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
 
