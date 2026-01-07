@@ -7,7 +7,7 @@ $DB_USERNAME = "root";
 $DB_PASSWORD = "";
 $DB_NAME = "mpesa_transactions"; 
 
-$db = mysqli_connect($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
+$db = mysqli_connect($DB_SERVER, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, 3306, "/opt/lampp/var/mysql/mysql.sock");
 
 if (!$db) {
     die("Database connection failed: " . mysqli_connect_error());

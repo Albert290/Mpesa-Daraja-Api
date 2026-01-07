@@ -1,3 +1,4 @@
 <?php
-
-echo "DARAJA API BY URBAN SWARAS";
+header("Location: registration.html");
+exit();
+?>
